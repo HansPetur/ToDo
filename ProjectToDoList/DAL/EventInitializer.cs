@@ -13,8 +13,8 @@ namespace ToDoList.DAL
         {
             var events = new List<Event>
             {
-            new Event{EventName="Test", Description="This is a test", Deadline=DateTime.Parse("2014-09-26")},
-            new Event{EventName="Test2", Description="Is it working?", Deadline=DateTime.Parse("2014-09-26")}
+            new Event{EventName="Test"},
+            new Event{EventName="Test2"}
             };
             events.ForEach(s => context.Events.Add(s));
             context.SaveChanges();
