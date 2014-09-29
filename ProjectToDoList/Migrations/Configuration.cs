@@ -30,8 +30,8 @@ namespace ProjectToDoList.Migrations
             
             var events = new Event[]
             {
-                new Event{EventName="Test", Description="This is a test", Deadline=DateTime.Parse("2014-09-26")},
-                new Event{EventName="Test2", Description="Is it working?", Deadline=DateTime.Parse("2014-09-26")}
+                new Event{EventName="Test"},
+                new Event{EventName="Test2"}
             };
             context.Events.AddOrUpdate(events);
             context.SaveChanges();
