@@ -13,14 +13,18 @@ namespace ToDoList.Models
         [Key]
         [HiddenInput(DisplayValue=false)]
         public int ID{ get; set; }
+
         [Required]
         public string EventName { get; set; }
+
         public string Description { get; set; }
+
+        public int something { get; set; }
+
         [Required]
         public DateTime Created { get; private set; }
-        [Required]
+
         public DateTime Deadline { get; set; }
-        public int tmp { get; set; }
 
         public Event()
         {

@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ToDoList.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace ProjectToDoList.Models
 {
@@ -29,5 +31,12 @@ namespace ProjectToDoList.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Event> Events { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //}
     }
 }

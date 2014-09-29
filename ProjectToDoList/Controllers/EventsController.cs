@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectToDoList.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,14 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ToDoList.DAL;
 using ToDoList.Models;
 
 namespace ToDoList.Controllers
 {
     public class EventsController : Controller
     {
-        private ToDoContext db = new ToDoContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
         public ActionResult Index()
