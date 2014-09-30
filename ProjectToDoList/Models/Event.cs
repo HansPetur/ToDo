@@ -12,9 +12,11 @@ namespace ToDoList.Models
         [Required]
         [Key]
         [HiddenInput(DisplayValue=false)]
-        public int ID{ get; set; }        
-        public string EventName { get; set; }        
-        public DateTime Created { get; private set; }       
+        public int ID{ get; set; }
+        [Required]
+        public string EventName { get; set; }
+        [Required]
+        public DateTime Created { get; private set; }
 
         public Event()
         {

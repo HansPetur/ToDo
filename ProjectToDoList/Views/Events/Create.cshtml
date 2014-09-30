@@ -4,101 +4,133 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <title>Create</title>
     <style type="text/css">
-        * {
+        html, body, form, fieldset, h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, dl, address {
             margin: 0;
             padding: 0;
         }
 
-        #container {
-            height: 100%;
-            width: 100%;
-            font-size: 0;
+        body {
+            background: #fff url(graphics/bg-body.gif) repeat-x;
+            font: 84%/160% "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
         }
 
-        input, 
-        select,
-        textarea {
-            width: 300px;
+        p {
+            text-align: center;
         }
 
-        #zero, #one, #two, #three, #four {
-            display: inline-block;
-            *display: inline;
-            zoom: 1;
-            vertical-align: top;
-            font-size: 12px;
+        a:link {
+            color: #d42945;
+            text-decoration: none;
+            border-bottom: 1px dotted #ffbac8;
         }
 
-        #zero {
-            float: left;
-            /*width: 20%;*/
+        a:visited {
+            color: #d42945;
+            border-bottom: none;
+            text-decoration: none;
         }
 
-        #one {
-            float: left;
-            width: 20%;
+        a:hover,
+        a:focus {
+            color: #f03b58;
+            border-bottom: 1px solid #f03b58;
+            text-decoration: none;
         }
 
-        #two {
-            float: left;
+        table a,
+        table a:link,
+        table a:visited {
+            border: none;
         }
 
-        #three {
-            float: left;
+        img {
+            border: 0;
+            margin-top: .5em;
         }
 
-        #four {
-            float: left;
+        table {
+            width: 90%;
+            border-top: 1px solid #e5eff8;
+            border-right: 1px solid #e5eff8;
+            margin: 1em auto;
+            border-collapse: collapse;
         }
 
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 34px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #555555;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        caption {
+            color: #9ba9b4;
+            font-size: .94em;
+            letter-spacing: .1em;
+            margin: 1em 0 0 0;
+            padding: 0;
+            caption-side: top;
+            text-align: center;
         }
 
-            .form-control:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        tr.odd td {
+            background: #f7fbff;
+        }
+
+        tr.odd .column1 {
+            background: #f4f9fe;
+        }
+        /*.column1	{
+        background:#f9fcfe;
+        }*/
+        .column1 {
+            background: transparent;
+        }
+
+        td {
+            color: #678197;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
+        th {
+            font-weight: normal;
+            color: #678197;
+            text-align: left;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+        }
+
+        thead th {
+            background: #f4f9fe;
+            text-align: center;
+            font: bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+            color: #66a3d3;
+        }
+
+        tfoot th {
+            text-align: center;
+            background: #f4f9fe;
+        }
+
+            tfoot th strong {
+                font: bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+                margin: .5em .5em .5em 0;
+                color: #66a3d3;
             }
 
-            .form-control[disabled],
-            .form-control[readonly],
-            fieldset[disabled] .form-control {
-                cursor: not-allowed;
-                background-color: #eeeeee;
+            tfoot th em {
+                color: #f03b58;
+                font-weight: bold;
+                font-size: 1.1em;
+                font-style: normal;
             }
 
-        textarea.form-control {
-            height: auto;
+        .now {
+            width: 520px;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-
     </style>
 </head>
 <body>
@@ -106,45 +138,54 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+    @using (Html.BeginForm()) { }
 
-
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div>
-            <h4>Event</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <div id="container">
-                <div id="zero">
-                    div zero
-                </div>
-                <div id="one">
-                    div one
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
-                        </div>
-                        <div id="two">
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>                       
-            </div> <!-- end container -->            
-        </div>
-    }
+    @Html.AntiForgeryToken()
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     </div>
+
+    <table>
+        <caption>ToDo List</caption>
+        <thead>
+            <tr class="odd">
+                <td class="column1"> &nbsp;</td>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th width="200px" scope=" row" =row" class="column1">
+                    &nbsp;
+                </th>
+                <td width="500px" style="border-left:none; border-right:none;">
+                    <div>
+                        <div class="form-control">
+                            @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "now" } })
+                            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td style="border-left:none;">
+                    <div>
+                        <div>
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="odd">
+                <th scope="row" class="column1" style="background: #fff;">
+                    <div>
+                        <p><a href="styles.css">&rarr; @Html.ActionLink("Back to List", "Index")</a></p>
+                    </div>
+                </th>
+                <td style="background: #fff;"></td>
+                <td style="background: #fff;"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
