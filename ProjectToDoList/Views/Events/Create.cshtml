@@ -138,7 +138,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    @using (Html.BeginForm()) { }
+    @using (Html.BeginForm()) {
 
     @Html.AntiForgeryToken()
 
@@ -157,7 +157,7 @@
         </thead>
         <tbody>
             <tr>
-                <th width="200px" scope=" row" =row" class="column1">
+                <th width="200px" scope="row" class="column1">
                     &nbsp;
                 </th>
                 <td width="500px" style="border-left:none; border-right:none;">
@@ -187,5 +187,6 @@
             </tr>
         </tbody>
     </table>
+    }
 </body>
 </html>
