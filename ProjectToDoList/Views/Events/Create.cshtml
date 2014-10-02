@@ -25,13 +25,13 @@
         }
 
         a:link {
-            color: #d42945;
+            color: #678197;
             text-decoration: none;
             border-bottom: 1px dotted #ffbac8;
         }
 
         a:visited {
-            color: #d42945;
+            color: #678197;
             border-bottom: none;
             text-decoration: none;
         }
@@ -128,6 +128,14 @@
                 font-style: normal;
             }
 
+        .breadcrumb {
+            font-size: 1.0em;
+            color: #736F6E;
+            border-bottom: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
         .now {
             width: 520px;
         }
@@ -138,54 +146,62 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    @using (Html.BeginForm()) { }
+    @using (Html.BeginForm())
+    {
 
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    </div>
 
-    <table>
-        <caption>ToDo List</caption>
-        <thead>
-            <tr class="odd">
-                <td class="column1"> &nbsp;</td>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th width="200px" scope=" row" =row" class="column1">
-                    &nbsp;
-                </th>
-                <td width="500px" style="border-left:none; border-right:none;">
-                    <div>
-                        <div class="form-control">
-                            @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "now" } })
-                            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </td>
-                <td style="border-left:none;">
-                    <div>
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        
+        <p class="breadcrumb">Home page > Create list</p>
+    <br /> 
+        <table>
+            <caption>ToDo List</caption>
+            <thead>
+                <tr class="odd">
+                    <td class="column1">&nbsp;</td>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="200px" scope="row" class="column1">
+                        &nbsp;
+                    </th>
+                    <td width="500px" style="border-left:none; border-right:none;">
                         <div>
-                            <input type="submit" value="Create" class="btn btn-default" />
+                            <div class="form-control">
+                                @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "now" } })
+                                @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <tr class="odd">
-                <th scope="row" class="column1" style="background: #fff;">
-                    <div>
-                        <p><a href="styles.css">&rarr; @Html.ActionLink("Back to List", "Index")</a></p>
-                    </div>
-                </th>
-                <td style="background: #fff;"></td>
-                <td style="background: #fff;"></td>
-            </tr>
-        </tbody>
-    </table>
-</body>
+                    </td>
+                    <td style="border-left:none;">
+                        <div>
+                            <div>
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row" class="column1" style="background: #fff;">
+                        <div>
+                            <p><a href="styles.css">&rarr; @Html.ActionLink("Back to List", "Index")</a></p>
+                        </div>
+                    </th>
+                    <td style="background: #fff;"></td>
+                    <td style="background: #fff;"></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        }
+
+    </body>
 </html>
