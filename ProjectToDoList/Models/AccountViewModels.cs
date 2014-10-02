@@ -49,8 +49,7 @@ namespace ProjectToDoList.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "User Name")]
         public string Email { get; set; }
 
         [Required]
@@ -65,8 +64,7 @@ namespace ProjectToDoList.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "User Name")]
         public string Email { get; set; }
 
         [Required]

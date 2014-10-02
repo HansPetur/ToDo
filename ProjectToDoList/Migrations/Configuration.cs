@@ -1,40 +1,50 @@
 namespace ProjectToDoList.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using ProjectToDoList.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using ToDoList.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ProjectToDoList.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ProjectToDoList.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            // This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
+            // Seed a user.
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var newUser = new ApplicationUser();
+            newUser.UserName = "Monkey";
+            var res = manager.Create(newUser, "123456");
             
-                //context.People.AddOrUpdate(
-                //  p => p.FullName,
-                //  new Person { FullName = "Andrew Peters" },
-                //  new Person { FullName = "Brice Lambson" },
-                //  new Person { FullName = "Rowan Miller" }
-                //);
-            
-            var events = new Event[]
+            // Seed a list.
+            var toDoLists = new ToDoList[]
             {
-                new Event{EventName="Test"},
-                new Event{EventName="Test2"}
+                new ToDoList{ Name="A to-do list", Owner=manager.FindByName("Monkey") }
+            };
+
+            // Seed some test events.
+            var events = new ToDoItem[]
+            {
+                new ToDoItem{Description="Test", Owner=toDoLists[0]},
+                new ToDoItem{Description="Things that need doing.", Owner=toDoLists[0]}
             };
             context.Events.AddOrUpdate(events);
             context.SaveChanges();
+
+
+            // Call super class Seed fn.
+            base.Seed(context);
         }
     }
 }

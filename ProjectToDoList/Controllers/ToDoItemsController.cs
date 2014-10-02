@@ -1,118 +1,118 @@
-﻿using ProjectToDoList.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ToDoList.Models;
+using ProjectToDoList.Models;
 
-namespace ToDoList.Controllers
+namespace ProjectToDoList.Controllers
 {
-    public class EventsController : Controller
+    public class ToDoItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Events
-        public ActionResult Index()
+        // GET: ToDoItems
+        public async Task<ActionResult> Index()
         {
-            return View(db.Events.ToList());
+            return View(await db.Events.ToListAsync());
         }
 
-        // GET: Events/Details/5
-        public ActionResult Details(int? id)
+        // GET: ToDoItems/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            ToDoItem toDoItem = await db.Events.FindAsync(id);
+            if (toDoItem == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(toDoItem);
         }
 
-        // GET: Events/Create
+        // GET: ToDoItems/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: ToDoItems/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EventName,Description,Created,Deadline")] Event @event)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Description,Created,IsDone")] ToDoItem toDoItem)
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
+                db.Events.Add(toDoItem);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(@event);
+            return View(toDoItem);
         }
 
-        // GET: Events/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ToDoItems/Edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            ToDoItem toDoItem = await db.Events.FindAsync(id);
+            if (toDoItem == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(toDoItem);
         }
 
-        // POST: Events/Edit/5
+        // POST: ToDoItems/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EventName,Description,Created,Deadline")] Event @event)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Description,Created,IsDone")] ToDoItem toDoItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Entry(toDoItem).State = EntityState.Modified;
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(@event);
+            return View(toDoItem);
         }
 
-        // GET: Events/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: ToDoItems/Delete/5
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            ToDoItem toDoItem = await db.Events.FindAsync(id);
+            if (toDoItem == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(toDoItem);
         }
 
-        // POST: Events/Delete/5
+        // POST: ToDoItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
+            ToDoItem toDoItem = await db.Events.FindAsync(id);
+            db.Events.Remove(toDoItem);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

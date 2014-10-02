@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using ToDoList.Models;
+using ProjectToDoList.Models;
 
 namespace ProjectToDoList.Models
 {
     public class ToDoList
     {
         [Required]
-        public int ID { get; set; }
-
-        [Required]
-        public int OwnerID { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public List<Event> Events;
+        public List<ToDoItem> ToDoItems { get; set; }
+
+        [Required]
+        public ApplicationUser Owner { get; set; }
+
+        public ToDoList()
+        {
+            ToDoItems = new List<ToDoItem>();
+        }
     }
 }
