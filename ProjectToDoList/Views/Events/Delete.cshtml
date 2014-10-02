@@ -180,7 +180,21 @@
                             @Html.DisplayFor(model => model.Created)
                         </td>
                         <td>
-                            <input type="submit" value="Delete" class="btn btn-default" />
+                            <div>
+                                <style scoped>
+                                    .button-warning {
+                                        color: #666;
+                                        border-radius: 3px;
+                                        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                                    }
+
+                                    .button-warning {
+                                        background: #e5eff8; /* this is an orange */
+                                    }
+                                </style>
+                                <button class="button-warning pure-button">Delete</button>
+                            </div>
+                            
                         </td>
                     </tr>
 

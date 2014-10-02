@@ -143,6 +143,19 @@
             background: transparent;
             width: 520px;
         }
+
+        .button {
+            padding: 5px;
+            background-color: #dcdcdc;
+            border: 1px solid #666;
+            color: #000;
+            text-decoration: none;            
+        }
+
+
+
+    
+
     </style>
 </head>
 <body>
@@ -178,12 +191,21 @@
                             </div>
                         </div>
                     </td>
-                    <td style="border-left:none;">
-                        <div>
-                            <div>
-                                  <input type="submit" value="Save" class="btn btn-default" />
-                            </div>
-                        </div>
+                    <td style="border-left:none;">                            
+                                <div>
+                                    <style scoped>                                       
+                                        .button-warning {
+                                            color: #666;
+                                            border-radius: 3px;
+                                            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                                        }
+
+                                        .button-warning {
+                                            background: #e5eff8; /* this is an orange */
+                                        }
+                                    </style>                                   
+                                    <button class="button-warning pure-button">Save</button>                                    
+                                </div>                             
                     </td>
                 </tr>
                 <tr class="odd">
