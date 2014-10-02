@@ -131,7 +131,7 @@
 
         .breadcrumb {
             font-size: 1.0em;
-            color: #736F6E;
+            color: #678197;
             border-bottom: 1px solid #e5eff8;
             padding: .3em 1em;
             text-align: left;
@@ -143,23 +143,20 @@
     </style>
 </head>
 <body>
-    
-    <div>
-        <h
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            
+            <p class="breadcrumb">Home page > Delete list-item</p>
+        <br/> 
 
             <table class="table">
                 <caption>ToDo List</caption>
 
                 <thead>
                     <tr class="odd">
-                        <td class="column1">
-                            <p>
-                                Are you sure you want to delete this?
-                            </p>
+                        <td class="column1">                          
                         </td>
                         <th scope="col">&nbsp;</th>
                         <th scope="col">&nbsp;</th>
@@ -200,6 +197,6 @@
             </table>
 
         }
-    </div>
+
 </body>
 </html>

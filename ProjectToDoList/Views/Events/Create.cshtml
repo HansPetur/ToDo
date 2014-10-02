@@ -130,13 +130,16 @@
 
         .breadcrumb {
             font-size: 1.0em;
-            color: #736F6E;
+            color: #678197;
             border-bottom: 1px solid #e5eff8;
             padding: .3em 1em;
             text-align: left;
         }
 
         .now {
+            border: none;
+            background-color: #fff;
+            background: transparent;
             width: 520px;
         }
     </style>
@@ -151,13 +154,13 @@
 
         @Html.AntiForgeryToken()
 
-
+    
         <div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         </div>
-        
-        <p class="breadcrumb">Home page > Create list</p>
-    <br /> 
+
+        <p class="breadcrumb">Home page > Create list-item</p>
+        <br />
         <table>
             <caption>ToDo List</caption>
             <thead>
@@ -175,7 +178,7 @@
                     <td width="500px" style="border-left:none; border-right:none;">
                         <div>
                             <div class="form-control">
-                                @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "now" } })
+                                @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @id = "txb", @class = "now" } })
                                 @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -199,9 +202,16 @@
                 </tr>
             </tbody>
         </table>
+    
 
 
-        }
+    }
 
+    <script language="javascript" type="text/javascript">
+        var a = document.getElementById("txb");
+        a.focus();
+        a.value = '';
+    </script>
+   
     </body>
 </html>

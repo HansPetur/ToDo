@@ -14,8 +14,8 @@ namespace ToDoList.Models
         [Key]
         [HiddenInput(DisplayValue=false)]
         public int ID{ get; set; }
-        [Required(ErrorMessage = "Cannot be empty!")]       
-        public string EventName { get; set; }
+        [Required(ErrorMessage = "Cannot be empty!")]           
+        public string EventName { get; set; }        
         [Required]
         public DateTime Created { get; private set; }
 
