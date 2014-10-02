@@ -10,38 +10,184 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style type="text/css">
+        html, body, form, fieldset, h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, dl, address {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #fff url(graphics/bg-body.gif) repeat-x;
+            font: 84%/160% "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        a:link {
+            color: #678197;
+            text-decoration: none;
+            border-bottom: 1px dotted #ffbac8;
+        }
+
+        a:visited {
+            color: #678197;
+            border-bottom: none;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: #f03b58;
+            border-bottom: 1px solid #f03b58;
+            text-decoration: none;
+        }
+
+        table a,
+        table a:link,
+        table a:visited {
+            border: none;
+        }
+
+        img {
+            border: 0;
+            margin-top: .5em;
+        }
+
+        table {
+            width: 90%;
+            border-top: 1px solid #e5eff8;
+            border-right: 1px solid #e5eff8;
+            margin: 1em auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            color: #9ba9b4;
+            font-size: .94em;
+            letter-spacing: .1em;
+            margin: 1em 0 0 0;
+            padding: 0;
+            caption-side: top;
+            text-align: center;
+        }
+
+        tr.odd td {
+            background: #f7fbff;
+        }
+
+        tr.odd .column1 {
+            background: #f4f9fe;
+        }
+        /*.column1	{
+        background:#f9fcfe;
+        }*/
+        .column1 {
+            background: transparent;
+        }
+
+        td {
+            color: #678197;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
+        th {
+            font-weight: normal;
+            color: #678197;
+            text-align: left;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+        }
+
+        thead th {
+            background: #f4f9fe;
+            text-align: center;
+            font: bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+            color: #66a3d3;
+        }
+
+        tfoot th {
+            text-align: center;
+            background: #f4f9fe;
+        }
+
+            tfoot th strong {
+                font: bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+                margin: .5em .5em .5em 0;
+                color: #66a3d3;
+            }
+
+            tfoot th em {
+                color: #f03b58;
+                font-weight: bold;
+                font-size: 1.1em;
+                font-style: normal;
+            }
+
+        .breadcrumb {
+            font-size: 1.0em;
+            color: #736F6E;
+            border-bottom: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
+        .now {
+            width: 520px;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
+    <p class="breadcrumb">Home page</p>
+    <br />    
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EventName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    
-    </table>
+        <caption>ToDo List</caption>
+
+        <thead>
+            <tr class="odd">
+                <td class="column1">
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                </td>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th style="font-weight:600;">
+                    @Html.DisplayNameFor(model => model.EventName)
+                </th>
+                <th style="font-weight:600;">
+                    @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |                       
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+</table>
 </body>
 </html>

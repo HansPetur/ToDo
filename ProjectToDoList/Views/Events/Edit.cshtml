@@ -10,65 +10,193 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Edit</title>
+    <style type="text/css">
+        html, body, form, fieldset, h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, dl, address {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #fff url(graphics/bg-body.gif) repeat-x;
+            font: 84%/160% "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        a:link {
+            color: #678197;
+            text-decoration: none;
+            border-bottom: 1px dotted #ffbac8;
+        }
+
+        a:visited {
+            color: #678197;
+            border-bottom: none;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: #f03b58;
+            border-bottom: 1px solid #f03b58;
+            text-decoration: none;
+        }
+
+        table a,
+        table a:link,
+        table a:visited {
+            border: none;
+        }
+
+        img {
+            border: 0;
+            margin-top: .5em;
+        }
+
+        table {
+            width: 90%;
+            border-top: 1px solid #e5eff8;
+            border-right: 1px solid #e5eff8;
+            margin: 1em auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            color: #9ba9b4;
+            font-size: .94em;
+            letter-spacing: .1em;
+            margin: 1em 0 0 0;
+            padding: 0;
+            caption-side: top;
+            text-align: center;
+        }
+
+        tr.odd td {
+            background: #f7fbff;
+        }
+
+        tr.odd .column1 {
+            background: #f4f9fe;
+        }
+        /*.column1	{
+        background:#f9fcfe;
+        }*/
+        .column1 {
+            background: transparent;
+        }
+
+        td {
+            color: #678197;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
+        th {
+            font-weight: normal;
+            color: #678197;
+            text-align: left;
+            border-bottom: 1px solid #e5eff8;
+            border-left: 1px solid #e5eff8;
+            padding: .3em 1em;
+        }
+
+        thead th {
+            background: #f4f9fe;
+            text-align: center;
+            font: bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+            color: #66a3d3;
+        }
+
+        tfoot th {
+            text-align: center;
+            background: #f4f9fe;
+        }
+
+            tfoot th strong {
+                font: bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+                margin: .5em .5em .5em 0;
+                color: #66a3d3;
+            }
+
+            tfoot th em {
+                color: #f03b58;
+                font-weight: bold;
+                font-size: 1.1em;
+                font-style: normal;
+            }
+
+        .breadcrumb {
+            font-size: 1.0em;
+            color: #736F6E;
+            border-bottom: 1px solid #e5eff8;
+            padding: .3em 1em;
+            text-align: left;
+        }
+
+        .now {
+            width: 520px;
+        }
+    </style>
 </head>
 <body>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>    
     
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         
-        <div class="form-horizontal">
-            <h4>Event</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ID)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+        <p class="breadcrumb">Home page > Edit list</p>
+        <br/>        
+        <table>
+            <caption>ToDo List</caption>
+            <thead>
+                <tr class="odd">
+                    <td class="column1">&nbsp;</td>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="200px" scope="row" class="column1">
+                        &nbsp;
+                    </th>
+                    <td width="500px" style="border-left:none; border-right:none;">
+                        <div>
+                            <div class="form-control">                                
+                                @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "now" } })
+                                @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })								
+                            </div>
+                        </div>
+                    </td>
+                    <td style="border-left:none;">
+                        <div>
+                            <div>
+                                  <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row" class="column1" style="background: #fff;">
+                        <div>
+                            <p><a href="styles.css">&rarr; @Html.ActionLink("Back to List", "Index")</a></p>
+                        </div>
+                    </th>
+                    <td style="background: #fff;"></td>
+                    <td style="background: #fff;"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+   
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+
 </body>
 </html>
