@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ToDoList.Models
 {
@@ -13,7 +14,7 @@ namespace ToDoList.Models
         [Key]
         [HiddenInput(DisplayValue=false)]
         public int ID{ get; set; }
-        [Required]
+        [Required(ErrorMessage = "Cannot be empty!")]       
         public string EventName { get; set; }
         [Required]
         public DateTime Created { get; private set; }
