@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ProjectToDoList.Models;
 using Microsoft.AspNet.Identity;
@@ -32,6 +28,17 @@ namespace ProjectToDoList.Controllers
             return View(db.ToDoLists.Where(todo => todo.Owner != null && todo.Owner.Id == currentUser.Id).ToList());
         }
 
+        public async Task<ActionResult> ShowList(int id)
+        {
+            //var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
+            string uid = User.Identity.GetUserId();
+            var currentUser = await db.Users.FirstOrDefaultAsync(x => x.Id == uid);
+            currentUser.CurrentListId = id;
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index", "ToDoItems");
+        }
+
         // GET: ToDoLists/Create
         public ActionResult Create()
         {
@@ -43,14 +50,14 @@ namespace ProjectToDoList.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,OwnerID,Name")] ToDoList toDoList)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name")] ToDoList toDoList)
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
-
+            toDoList.Owner = currentUser;
+            TryUpdateModel(toDoList);
+            TryValidateModel(toDoList);
             if (ModelState.IsValid)
             {
-                toDoList.Owner = currentUser;
-
                 db.ToDoLists.Add(toDoList);
 
                 await db.SaveChangesAsync();

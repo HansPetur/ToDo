@@ -8,17 +8,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProjectToDoList.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ProjectToDoList.Controllers
 {
+    [Authorize]
     public class ToDoItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationUserManager manager;
+
+        public ToDoItemsController()
+        {
+            manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+        }
 
         // GET: ToDoItems
         public async Task<ActionResult> Index()
         {
-            return View(await db.Events.ToListAsync());
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
+
+            return View(await db.Events.Where(list => list.Owner != null && list.Owner.Id == currentUser.CurrentListId).ToListAsync());
         }
 
         // GET: ToDoItems/Details/5
@@ -49,8 +60,10 @@ namespace ProjectToDoList.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Description,Created,IsDone")] ToDoItem toDoItem)
         {
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
+                toDoItem.Owner = await db.ToDoLists.FindAsync(currentUser.CurrentListId);
                 db.Events.Add(toDoItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

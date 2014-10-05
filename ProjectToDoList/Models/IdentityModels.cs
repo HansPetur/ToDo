@@ -14,6 +14,7 @@ namespace ProjectToDoList.Models
     public class ApplicationUser : IdentityUser
     {
         public List<ToDoList> ToDoLists { get; set; }
+        public int CurrentListId { get; set; }
 
         public ApplicationUser()
         {

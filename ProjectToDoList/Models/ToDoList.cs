@@ -18,7 +18,6 @@ namespace ProjectToDoList.Models
 
         public List<ToDoItem> ToDoItems { get; set; }
 
-        [Required]
         public ApplicationUser Owner { get; set; }
 
         public ToDoList()

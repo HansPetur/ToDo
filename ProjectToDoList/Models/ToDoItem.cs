@@ -24,7 +24,6 @@ namespace ProjectToDoList.Models
         [Required]
         public bool IsDone { get; set; }
 
-        [Required]
         public ToDoList Owner{ get; set; }
 
         public ToDoItem()
