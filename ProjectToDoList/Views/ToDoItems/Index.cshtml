@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Created)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsDone)
+            @Html.CheckBoxFor(modelItem => item.IsDone)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
