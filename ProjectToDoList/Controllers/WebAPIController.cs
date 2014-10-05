@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProjectToDoList.Models;
+using System.Web.Http.Cors;
 
 namespace ProjectToDoList.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class WebAPIController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
