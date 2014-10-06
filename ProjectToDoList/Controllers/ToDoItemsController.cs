@@ -29,6 +29,8 @@ namespace ProjectToDoList.Controllers
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
 
+            ViewBag.Title = db.ToDoLists.Find(currentUser.CurrentListId).Name;
+
             return View(await db.Events.Where(list => list.Owner != null && list.Owner.Id == currentUser.CurrentListId).ToListAsync());
         }
 
